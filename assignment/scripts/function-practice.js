@@ -37,9 +37,9 @@ console.log('Test - should multiply 2 times 3 times 4 and print "24"', multiplyT
 //    or greater than zero, and false otherwise
 function isPositive(number) {
   if (number > 0) {
-    return;
+    return true;
   }
-  return;
+  return false; // will return false if number is not greater than 0
 }
 // Call the function to test each outcome (true & false)
 // Write a separate console.log statement for each outcome

@@ -114,9 +114,73 @@ console.log('Test - should return 12 for [4,3,1,2,2]', sumAllReduce([4, 3, 1, 2,
 // 10. Function to return a new array of all positive (greater than zero)
 //     numbers contained in an input array. If there are no positive numbers
 //     return an empty array. Note: The input array should not change.
+function addPositives(arr) {
+  let positives = [];
+  for (const num of arr) {
+    if (num > 0) {
+      positives.push(num);
+    }
+  }
+  return positives;
+}
+console.log('Test - should return [3,2] for [-1, 3, 0, 2]', addPositives([-1, 3, 0, 2]));
+console.log('Test - should return [] for [-1, -4, 0, -2]', addPositives([-1, -4, 0, -2]));
+console.log('Test - should return [] for []', addPositives([]));
 
-
+// as with question 9, this sounds like an Array method, .filter():
+// this is how I would do that:
+function addPositivesFilter(arr) {
+  return arr.filter(item => item > 0);
+}
+console.log('Test - should return [3,2] for [-1, 3, 0, 2]', addPositivesFilter([-1, 3, 0, 2]));
+console.log('Test - should return [] for [-1, -4, 0, -2]', addPositivesFilter([-1, -4, 0, -2]));
+console.log('Test - should return [] for []', addPositivesFilter([]));
 
 // 11. Pick a problem from Edabit(https://edabit.com/) or
 //     CodeWars(https://www.codewars.com/). Then describe it
 //     here in a comment, write the function, and test it!
+
+// This is the kata on Codewars: https://www.codewars.com/kata/5825792ada030e9601000782
+//Below, in the block comment, are the instructions:
+/*
+Implement zipWith
+zipWith takes a function and two arrays and zips the arrays together, applying the function to every pair of values.
+The function value is one new array.
+
+If the arrays are of unequal length, the output will only be as long as the shorter one.
+(Values of the longer array are simply not used.)
+
+Inputs should not be modified.
+
+Examples
+zipWith( Math.pow, [10,10,10,10], [0,1,2,3] )      =>  [1,10,100,1000]
+zipWith( Math.max, [1,4,7,1,4,7], [4,7,1,4,7,1] )  =>  [4,7,7,4,7,7]
+
+zipWith( function(a,b) { return a+b; }, [0,1,2,3], [0,1,2,3] )  =>  [0,2,4,6]  Both forms are valid.
+zipWith( (a,b) => a+b,                  [0,1,2,3], [0,1,2,3] )  =>  [0,2,4,6]  Both are functions.
+Input validation
+Assume all input is valid.
+*/
+
+// The starter function on Codewars looks like this:
+/*
+function zipWith(fn,a0,a1) {
+  return [];
+}
+*/
+
+// this was my solution that passed the Codewars tests
+function zipWith(fn, a0, a1) {
+  const zippedArray = []; // the array to return
+  let length = Math.min(a0.length, a1.length); // find the shortest array's length
+  // only iterate until reaching the end of the shortest array
+  for (let i = 0; i < length; i++) {
+    zippedArray.push(fn(a0[i], a1[i])); // perform callback function
+  }
+  return zippedArray;
+}
+
+// Below are my own tests:
+console.log('Should produce [5, 11, 10, 10] when passed arrays [2, 7, 5, 4] and [3, 4, 5, 6, 7] and function addNumbers from question 3', zipWith(addNumbers, [2, 7, 5, 4], [3, 4, 5, 6, 7]));
+console.log('Should produce [6, 28, 25, 24] when passed arrays [2, 7, 5, 4, 12] and [3, 4, 5, 6] and anonymous function to multiply two numbers',
+  zipWith((num1, num2) => num1 * num2, [2, 7, 5, 4, 12], [3, 4, 5, 6]));

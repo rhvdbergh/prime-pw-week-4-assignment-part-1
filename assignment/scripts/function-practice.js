@@ -27,9 +27,10 @@ function addNumbers(firstNumber, secondNumber) {
 console.log('Test - should add 3 and 4 together and print "7"', addNumbers(3, 4));
 
 // 4. Function to multiply three numbers & return the result
-function multiplyThree() {
-
+function multiplyThree(num1, num2, num3) {
+  return num1 * num2 * num3;
 }
+console.log('Test - should multiply 2 times 3 times 4 and print "24"', multiplyThree(2, 3, 4));
 
 
 // 5. Function that will return true if a number is positive,

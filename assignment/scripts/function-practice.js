@@ -91,11 +91,25 @@ console.log('isFirstLetter - should say true', isFirstLetter('a', 'apple'));
 console.log('isFirstLetter - should say false', isFirstLetter('z', 'apple'));
 
 // 9. Function to return the sum of all numbers in an array
-function sumAll() {
+function sumAll(arr) {
   let sum = 0
   // TODO: loop to add items
+  for (const num of arr) {
+    sum += num;
+  }
   return sum;
 }
+console.log('Test - should return 7 for [1,2,3,1]', sumAll([1, 2, 3, 1]));
+console.log('Test - should return 12 for [4,3,1,2,2]', sumAll([4, 3, 1, 2, 2]));
+
+// this also sounds like .reduce(), but I guess technically not a loop :)
+// was good practice to write it, though
+function sumAllReduce(arr) {
+  return arr.reduce((acc, cur) => acc + cur);
+}
+console.log('Test - should return 7 for [1,2,3,1]', sumAllReduce([1, 2, 3, 1]));
+console.log('Test - should return 12 for [4,3,1,2,2]', sumAllReduce([4, 3, 1, 2, 2]));
+
 
 // 10. Function to return a new array of all positive (greater than zero)
 //     numbers contained in an input array. If there are no positive numbers

@@ -56,16 +56,24 @@ function getLast(array) {
   }
   // will return undefined by default
 }
-console.log('Test - should return 5, last element in array [1,2,3,4,5]',
-  getLast([1, 2, 3, 4, 5]));
+console.log('Test - should return 5, last element in array [1,2,3,4,5]', getLast([1, 2, 3, 4, 5]));
 console.log('Test - should return undefined', getLast([]));
 
 // 7. Function to find a value in an array. Return true if the
 //    value is found and false otherwise. Use a loop;
 //    DO NOT use Array.includes, Array.indexOf, or Array.find
 function find(value, array) {
-
+  for (const item of array) {
+    if (item === value) {
+      return true; // will return as soon as it finds a match
+    }
+  }
+  return false;
 }
+console.log('Test - should return true for value: 4, array: [5,6,4,3]', find(4, [5, 6, 4, 3]));
+console.log('Test - should return true for value: "cat", array: ["dog", "cat", "parrot", "tortoise"]', find('cat', ["dog", "cat", "parrot", "tortoise"]));
+console.log('Test - should return false for value: 6, array: [4,5,2]', find(6, [4, 5, 2]));
+console.log('Test - should return false for value: "cat", array: ["snake", "giraffe", "horse"]', find('cat', ["snake", "giraffe", "horse"]));
 
 // ----------------------
 // Stretch Goals

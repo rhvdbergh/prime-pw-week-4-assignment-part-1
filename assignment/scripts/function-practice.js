@@ -37,9 +37,9 @@ console.log('Test - should multiply 2 times 3 times 4 and print "24"', multiplyT
 //    or greater than zero, and false otherwise
 function isPositive(number) {
   if (number > 0) {
-    return true;
+    return true; // will only return true if number is greater than 0
   }
-  return false; // will return false if number is not greater than 0
+  return false; // will return false if number is 0 or not greater than 0
 }
 // Call the function to test each outcome (true & false)
 // Write a separate console.log statement for each outcome
@@ -51,7 +51,7 @@ console.log('isPositive - should say false', isPositive(-3));
 // 6. Function to return the _last_ item in an array. If the
 //    array is empty, return `undefined`.
 function getLast(array) {
-  if (array.length > 0) {
+  if (array.length > 0) { // test whether array is empty
     return array[array.length - 1];
   }
   // will return undefined by default
@@ -63,12 +63,12 @@ console.log('Test - should return undefined', getLast([]));
 //    value is found and false otherwise. Use a loop;
 //    DO NOT use Array.includes, Array.indexOf, or Array.find
 function find(value, array) {
-  for (const item of array) {
+  for (const item of array) { // loop through and test each element (item) in the array
     if (item === value) {
       return true; // will return as soon as it finds a match
     }
   }
-  return false;
+  return false; // will return false if no matches were found
 }
 console.log('Test - should return true for value: 4, array: [5,6,4,3]', find(4, [5, 6, 4, 3]));
 console.log('Test - should return true for value: "cat", array: ["dog", "cat", "parrot", "tortoise"]', find('cat', ["dog", "cat", "parrot", "tortoise"]));
@@ -81,7 +81,7 @@ console.log('Test - should return false for value: "cat", array: ["snake", "gira
 // 8. Function to check if a letter is the first letter in a
 //    string. Return true if it is, and false otherwise
 function isFirstLetter(letter, string) {
-  if (letter === string[0]) {
+  if (letter === string[0]) { // compare the first letter of string at index 0 with letter
     return true;
   } else {
     return false;
@@ -92,10 +92,10 @@ console.log('isFirstLetter - should say false', isFirstLetter('z', 'apple'));
 
 // 9. Function to return the sum of all numbers in an array
 function sumAll(arr) {
-  let sum = 0
+  let sum = 0; // will hold total
   // TODO: loop to add items
-  for (const num of arr) {
-    sum += num;
+  for (const num of arr) { // loops through
+    sum += num; // and adds each element in array to the total, sum
   }
   return sum;
 }
@@ -103,6 +103,7 @@ console.log('Test - should return 7 for [1,2,3,1]', sumAll([1, 2, 3, 1]));
 console.log('Test - should return 12 for [4,3,1,2,2]', sumAll([4, 3, 1, 2, 2]));
 
 // this also sounds like .reduce(), but I guess technically not a loop :)
+// correction! .reduce() is a loop (just a different type)
 // was good practice to write it, though
 function sumAllReduce(arr) {
   return arr.reduce((acc, cur) => acc + cur);
@@ -115,13 +116,13 @@ console.log('Test - should return 12 for [4,3,1,2,2]', sumAllReduce([4, 3, 1, 2,
 //     numbers contained in an input array. If there are no positive numbers
 //     return an empty array. Note: The input array should not change.
 function addPositives(arr) {
-  let positives = [];
-  for (const num of arr) {
-    if (num > 0) {
-      positives.push(num);
+  let positives = []; // array to hold all positives
+  for (const num of arr) { // loop through given array
+    if (num > 0) { // check if num is positive, i.e. greater than 0
+      positives.push(num); // if positive, add to the holder array
     }
   }
-  return positives;
+  return positives; // will return empty array if no numbers are greater than 0
 }
 console.log('Test - should return [3,2] for [-1, 3, 0, 2]', addPositives([-1, 3, 0, 2]));
 console.log('Test - should return [] for [-1, -4, 0, -2]', addPositives([-1, -4, 0, -2]));
@@ -130,7 +131,8 @@ console.log('Test - should return [] for []', addPositives([]));
 // as with question 9, this sounds like an Array method, .filter():
 // this is how I would do that:
 function addPositivesFilter(arr) {
-  return arr.filter(item => item > 0);
+  return arr.filter(item => item > 0); // will return all items > 0 in a new array
+  // will return empty array if nothing passes filter
 }
 console.log('Test - should return [3,2] for [-1, 3, 0, 2]', addPositivesFilter([-1, 3, 0, 2]));
 console.log('Test - should return [] for [-1, -4, 0, -2]', addPositivesFilter([-1, -4, 0, -2]));
